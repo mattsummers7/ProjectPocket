@@ -4,27 +4,41 @@ public class MoveCamera : MonoBehaviour
 {
     private Vector3 targetPosition;
 
-    bool isMoving;
+    public enum PlayerIndex
+    {
+        Player1,
+        Player2,
+        Player3,
+    }
+
+    PlayerIndex playerIndex; 
+
     void Start()
     {
         
-        targetPosition = transform.GetChild(0).transform.position;        
     }
 
 
     void Update()
     {
-    
-        
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                FindFirstObjectByType<LerpMovement>().isMoving = true;
-                FindFirstObjectByType<LerpMovement>().setPoints(targetPosition);
-            }
-        
-        
-        
-        
+        GetPosition(playerIndex);
+        print(targetPosition);
+    }
+
+    public void GetPosition(PlayerIndex playerIndex)
+    {
+        switch (playerIndex)
+        {
+            case PlayerIndex.Player1:
+                targetPosition = transform.position;
+                break;
+            case PlayerIndex.Player2:
+                targetPosition = transform.position;
+                break;
+            case PlayerIndex.Player3:
+                targetPosition = transform.position;
+                break;
+        }
     }
 
     
